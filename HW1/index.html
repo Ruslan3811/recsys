@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Lunch Menu Generator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -152,20 +153,20 @@
             const foodName = document.querySelector('.food-name');
             const lunchDisplay = document.querySelector('.lunch-display');
             
-            // Array of lunch options with corresponding Font Awesome icons
+            // Array of lunch options with icons (Font Awesome + Iconify)
             const lunchMenu = [
-                { name: "Pizza", icon: "fas fa-pizza-slice" },
-                { name: "Sushi", icon: "fas fa-fish" },
-                { name: "Burger", icon: "fas fa-hamburger" },
-                { name: "Salad", icon: "fas fa-leaf" },
-                { name: "Tacos", icon: "fas fa-plate-wheat" },
-                { name: "Ramen", icon: "fas fa-bowl-rice" },
-                { name: "Sandwich", icon: "fas fa-bread-slice" },
-                { name: "Pasta", icon: "fas fa-plate-wheat" },
-                { name: "Curry", icon: "fas fa-mortar-pestle" },
-                { name: "Steak", icon: "fas fa-drumstick-bite" },
-                { name: "Soup", icon: "fas fa-bowl-food" },
-                { name: "BBQ", icon: "fas fa-fire" }
+                { name: "Pizza", icon: '<i class="fas fa-pizza-slice"></i>' },
+                { name: "Sushi", icon: '<i class="fas fa-fish"></i>' },
+                { name: "Burger", icon: '<i class="fas fa-burger"></i>' },
+                { name: "Salad", icon: '<i class="fas fa-leaf"></i>' },
+                { name: "Tacos", icon: '<span class="iconify" data-icon="game-icons:tacos"></span>' },
+                { name: "Ramen", icon: '<i class="fas fa-bowl-rice"></i>' },
+                { name: "Sandwich", icon: '<i class="fas fa-bread-slice"></i>' },
+                { name: "Pasta", icon: '<i class="fas fa-plate-wheat"></i>' },
+                { name: "Curry", icon: '<span class="iconify" data-icon="mdi:bowl-mix"></span>' },
+                { name: "Steak", icon: '<i class="fas fa-drumstick-bite"></i>' },
+                { name: "Soup", icon: '<i class="fas fa-bowl-food"></i>' },
+                { name: "BBQ", icon: '<i class="fas fa-fire"></i>' }
             ];
             
             // Function to generate random lunch
@@ -183,7 +184,7 @@
                 
                 // After a short delay, show the selected lunch
                 setTimeout(() => {
-                    foodIcon.innerHTML = `<i class="${selectedLunch.icon}"></i>`;
+                    foodIcon.innerHTML = selectedLunch.icon;
                     foodName.textContent = selectedLunch.name;
                     
                     // Add animation class

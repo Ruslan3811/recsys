@@ -1,4 +1,4 @@
-1 bug: Sometimes we don't get picture for dish
+#1 bug: Sometimes we don't get picture for dish
 
 Hypothesis: Code tries to get classes that don't exist. If smth does not exist, we don't get error, instead of that we silently skip the picture.
 
@@ -21,3 +21,8 @@ Option 5: Use images
 Host small PNG/SVG files in the repo. Most flexible visually, but adds file management overhead.
 
 fix: changed names of classes to valid names of classes
+
+#2 bug: some names of dishes mismatch with names of dishes.
+Hypothesis: We don't have too much kinds of pictures in existed class
+
+fix: added new source of icons

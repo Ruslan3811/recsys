@@ -123,13 +123,15 @@ Would you like me to help you write the initial code for `index.html`, `style.cs
 |---|---|
 | Pizza | `fas fa-pizza-slice` |
 | Sushi | `fas fa-fish` |
-| Burger | `fas fa-hamburger` |
+| Burger | `fas fa-burger` |
 | Salad | `fas fa-leaf` |
-| Tacos | `fas fa-plate-wheat` |
+| Tacos | `game-icons:tacos` (Iconify) |
 | Ramen | `fas fa-bowl-rice` |
 | Sandwich | `fas fa-bread-slice` |
 | Pasta | `fas fa-plate-wheat` |
-| Curry | `fas fa-mortar-pestle` |
+| Curry | `mdi:bowl-mix` (Iconify) |
 | Steak | `fas fa-drumstick-bite` |
 | Soup | `fas fa-bowl-food` |
 | BBQ | `fas fa-fire` |
+
+> Tacos and Curry have no FA6 Free glyphs (verified: fa6-solid, fa7-solid, mdi, tabler, lucide, ph). They use Iconify sets; requires the iconify.min.js script and the span markup `<span class="iconify" data-icon="set:icon"></span>` instead of an `<i class="">` tag.
