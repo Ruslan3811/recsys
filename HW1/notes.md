@@ -1,28 +1,80 @@
-#1 bug: Sometimes we don't get picture for dish
+# A01 — Notes
 
-Hypothesis: Code tries to get classes that don't exist. If smth does not exist, we don't get error, instead of that we silently skip the picture.
+## Bug #1: Some dishes had no icon at all
 
-So we can try 1 of 5 options how to fix it:
-Option 1: Rename classes (simplest)
-Just swap invalid names for valid FA6 equivalents. One-line change per item.
+**Symptom:** For dishes Pasta, Ramen, Soup the icon did not appear.
+Only the dish name was visible — empty space where the icon should be.
 
-Option 2: Use emoji instead of Font Awesome
-Replace the entire icon system with Unicode emoji:
-{ name: "Tacos", icon: "🌮" }
-No CDN dependency, works offline, zero setup. But you lose the consistent vector-icon style.
+**Hypothesis:** The lunchMenu array used Font Awesome classes that
+do not exist in version 6.4.0 (fa-pasta, fa-bowl-hot, fa-bowl).
+Font Awesome silently ignores unknown classes — no error in the
+console, but no icon either. This is a silent failure: the code
+looks correct, the browser reports no problem, but the visual
+result is wrong.
 
-Option 3: Use inline SVG
-Embed small SVG drawings directly in the HTML. Fully self-contained, no external dependency, pixel-perfect control. But more code to maintain.
+**5 fix options considered:**
+1. Rename classes to valid FA6 equivalents (simplest).
+2. Use emoji instead of Font Awesome (offline-friendly, but different style).
+3. Use inline SVG (self-contained, more code to maintain).
+4. Use a different icon library (Bootstrap Icons, Lucide, Material Icons).
+5. Host PNG/SVG files in the repo (most flexible, adds file management).
 
-Option 4: Use a different icon library
-Swap Font Awesome for Bootstrap Icons, Lucide, or Material Icons — each has its own CDN link and class naming scheme. Same concept, different provider.
+**Chosen fix:** option 1 — replace invalid classes with valid FA6 ones.
 
-Option 5: Use images
-Host small PNG/SVG files in the repo. Most flexible visually, but adds file management overhead.
+| Dish   | Before (invalid)  | After (valid)         |
+|--------|-------------------|-----------------------|
+| Ramen  | fa-bowl-hot       | fas fa-bowl-rice      |
+| Pasta  | fa-pasta          | fas fa-plate-wheat    |
+| Soup   | fa-bowl           | fas fa-bowl-food      |
 
-fix: changed names of classes to valid names of classes
+**Before:** Pasta, Ramen, Soup → empty space instead of an icon.
+**After:** all three dishes → icons are displayed.
 
-#2 bug: some names of dishes mismatch with names of dishes.
-Hypothesis: We don't have too much kinds of pictures in existed class
+**Verification:**
+- Opened DevTools → Console. No errors (FA stays silent — that's the trap).
+- Network tab: all.min.css loads from CDN (HTTP 200).
+- Clicked the button 50 times until I saw all 12 dishes:
+  Pizza, Sushi, Burger, Salad, Tacos, Ramen, Sandwich,
+  Pasta, Curry, Steak, Soup, BBQ.
+- For each dish, visually confirmed the icon is displayed. ✅
+- Cross-checked every `fas` class against https://fontawesome.com/icons.
+- Screenshots attached.
 
-fix: added new source of icons
+---
+
+## Bug #2: Curry and Tacos showed the same icon
+
+**Symptom:** Curry and Tacos displayed the same icon
+(fa-utensil-spoon). The icon was present, but it did not match
+the dishes — two different meals looked visually identical.
+
+**Hypothesis:** In the lunchMenu array, both dishes were assigned
+the same class (fa-utensil-spoon). A copy-paste mistake — the
+author duplicated a line and forgot to change the icon.
+
+Additionally, Tacos had no suitable FA6 Free Solid glyph even if
+we wanted a distinct one, so a second icon source was needed.
+
+**Chosen fix:** assign distinct, dish-specific icons using Iconify
+for both dishes (since neither has a fitting FA6 glyph).
+- Curry → mdi:bowl-mix (Iconify)
+- Tacos → game-icons:tacos (Iconify)
+
+**Before:** Curry and Tacos → same icon (fa-utensil-spoon).
+**After:** Curry → mdi:bowl-mix, Tacos → game-icons:tacos
+(two distinct icons that match the dishes).
+
+**Verification:**
+- Clicked the button until Curry appeared — confirmed its icon.
+- Clicked the button until Tacos appeared — confirmed its icon.
+- Visually confirmed the two icons are different and each matches
+  its dish.
+- Cross-checked `game-icons:tacos` and `mdi:bowl-mix` against
+  https://icon-sets.iconify.design.
+- Screenshots attached.
+
+---
+
+## Agent session
+- session.json: [path]
+- Prompts used: [brief description of what I asked the agent]
