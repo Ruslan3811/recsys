@@ -103,3 +103,33 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 6.  **Go to your repo Settings -> Pages ->** Select source `Deploy from a branch` -> Branch `main` / `root` and click Save. Your page will be live at `https://[your-username].github.io/random-lunch-generator` in a minute.
 
 Would you like me to help you write the initial code for `index.html`, `style.css`, and `script.js` next?
+
+---
+
+## ✏️ Prompt Fix: Valid Font Awesome Classes Only
+
+**Follow-up instruction for future code generation (add this to your answer):**
+
+> **DO NOT invent Font Awesome class names.** Only use icon classes that exist in the **Font Awesome 6 Free Solid** set. Fabricated names render as empty (silently, no error).
+>
+> Rules:
+> 1. Before using any `fa-*` class, confirm it exists in FA6 Free Solid (check fontawesome.com/icons or the verified list below).
+> 2. `fa-random` is deprecated in FA6 → use `fa-shuffle`.
+> 3. If no verified icon fits a dish, use a generic verified icon (`fa-utensils`) or an emoji — never a guessed name.
+
+**Verified FA6 Free Solid classes for this app:**
+
+| Dish | Verified class |
+|---|---|
+| Pizza | `fas fa-pizza-slice` |
+| Sushi | `fas fa-fish` |
+| Burger | `fas fa-hamburger` |
+| Salad | `fas fa-leaf` |
+| Tacos | `fas fa-plate-wheat` |
+| Ramen | `fas fa-bowl-rice` |
+| Sandwich | `fas fa-bread-slice` |
+| Pasta | `fas fa-plate-wheat` |
+| Curry | `fas fa-mortar-pestle` |
+| Steak | `fas fa-drumstick-bite` |
+| Soup | `fas fa-bowl-food` |
+| BBQ | `fas fa-fire` |

@@ -1,3 +1,5 @@
+1 bug: Sometimes we don't get picture for dish
+
 Hypothesis: Code tries to get classes that don't exist. If smth does not exist, we don't get error, instead of that we silently skip the picture.
 
 So we can try 1 of 5 options how to fix it:
@@ -17,3 +19,5 @@ Swap Font Awesome for Bootstrap Icons, Lucide, or Material Icons — each has it
 
 Option 5: Use images
 Host small PNG/SVG files in the repo. Most flexible visually, but adds file management overhead.
+
+fix: changed names of classes to valid names of classes
